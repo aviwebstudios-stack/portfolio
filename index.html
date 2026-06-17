@@ -1,1316 +1,1793 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Awo Iwinosa Vanessa, Full-Stack Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awo Iwinosa Vanessa, Full-Stack Developer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-:root {
-  --ink: #15261F;
-  --inkSoft: #1F352B;
-  --paper: #F7F1E4;
-  --paperLine: #DBCFB6;
-  --gold: #CB9A35;
-  --sage: #8FAE9B;
-  --clay: #B5563B;
-  --textOnInk: #F1EBDC;
-  --textDark: #18241F;
-}
+    :root {
+      --ink: #15261F;
+      --inkSoft: #1F352B;
+      --paper: #F7F1E4;
+      --paperLine: #DBCFB6;
+      --gold: #CB9A35;
+      --sage: #8FAE9B;
+      --clay: #B5563B;
+      --textOnInk: #F1EBDC;
+      --textDark: #18241F;
+    }
 
-html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--paper);
-  color: var(--textDark);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--paper);
+      color: var(--textDark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* ── CURSOR ── */
-.cursor {
-  width: 10px; height: 10px;
-  background: var(--gold);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.15s ease, opacity 0.2s;
-  transform: translate(-50%, -50%);
-}
-.cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.08s ease, width 0.25s, height 0.25s, opacity 0.2s;
-  transform: translate(-50%, -50%);
-  opacity: 0.5;
-}
-.cursor-ring.expand { width: 60px; height: 60px; opacity: 0.2; }
+    /* ── CURSOR ── */
+    .cursor {
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  background: rgba(21,38,31,0.97);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: padding 0.3s;
-}
-nav.scrolled { padding: 0.75rem 4rem; }
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-  text-decoration: none;
-}
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  color: var(--textOnInk);
-  text-decoration: none;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  transition: opacity 0.2s, color 0.2s;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -3px; left: 0;
-  width: 0; height: 1px;
-  background: var(--gold);
-  transition: width 0.25s ease;
-}
-.nav-links a:hover { opacity: 1; color: var(--gold); }
-.nav-links a:hover::after { width: 100%; }
-.nav-links a.active { opacity: 1; color: var(--gold); }
-.nav-links a.active::after { width: 100%; }
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.08s ease, width 0.25s, height 0.25s, opacity 0.2s;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+    }
 
-/* ── HERO ── */
-#hero {
-  min-height: 100vh;
-  background: var(--ink);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 7rem 2rem 4rem;
-  position: relative;
-  overflow: hidden;
-}
+    .cursor-ring.expand {
+      width: 60px;
+      height: 60px;
+      opacity: 0.2;
+    }
 
-.hero-bg-lines {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(143,174,155,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(143,174,155,0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
-  pointer-events: none;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      background: rgba(21, 38, 31, 0.97);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: padding 0.3s;
+    }
 
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.hero-orb-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(203,154,53,0.08) 0%, transparent 70%);
-  top: -200px; right: -150px;
-}
-.hero-orb-2 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(143,174,155,0.07) 0%, transparent 70%);
-  bottom: -100px; left: -100px;
-}
-.hero-orb-3 {
-  width: 200px; height: 200px;
-  border: 1px solid rgba(203,154,53,0.15);
-  bottom: 120px; right: 15%;
-  animation: floatOrb 8s ease-in-out infinite;
-}
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
+    nav.scrolled {
+      padding: 0.75rem 4rem;
+    }
 
-.hero-inner { position: relative; z-index: 2; }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(203,154,53,0.3);
-  border-radius: 100px;
-  padding: 0.35rem 1rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  animation: fadeDown 0.8s ease both;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px;
-  background: var(--gold);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.7); }
-}
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
 
-.hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  color: var(--textOnInk);
-  line-height: 1.05;
-  margin-bottom: 0.3rem;
-  animation: fadeDown 0.8s 0.1s ease both;
-}
-.hero-name .gold { color: var(--gold); }
-.hero-name .italic { font-style: italic; font-weight: 400; }
+    .nav-links a {
+      color: var(--textOnInk);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+      position: relative;
+    }
 
-.hero-role {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--sage);
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.5rem;
-  animation: fadeDown 0.8s 0.2s ease both;
-}
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
 
-.hero-tagline {
-  font-size: clamp(0.9rem, 1.4vw, 1rem);
-  color: var(--textOnInk);
-  opacity: 0.5;
-  max-width: 500px;
-  margin: 0 auto 2.5rem;
-  font-style: italic;
-  line-height: 1.8;
-  animation: fadeDown 0.8s 0.3s ease both;
-}
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
 
-.hero-cta {
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  animation: fadeDown 0.8s 0.4s ease both;
-}
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-.btn {
-  padding: 0.8rem 2rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  border-radius: 2px;
-  text-decoration: none;
-  transition: all 0.25s;
-  cursor: pointer;
-  border: none;
-  display: inline-block;
-}
-.btn-gold {
-  background: var(--gold);
-  color: var(--ink);
-}
-.btn-gold:hover { background: #daa93e; transform: translateY(-2px); }
-.btn-ghost {
-  background: transparent;
-  color: var(--textOnInk);
-  border: 1px solid rgba(241,235,220,0.2);
-}
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .nav-links a.active {
+      opacity: 1;
+      color: var(--gold);
+    }
 
-.hero-scroll {
-  position: absolute; bottom: 2.5rem; right: 10%;
-  transform: none;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: fadeDown 1s 0.6s ease both;
-}
-.hero-scroll span {
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--textOnInk);
-  opacity: 0.35;
-}
-.scroll-track {
-  width: 1px; height: 50px;
-  background: rgba(241,235,220,0.15);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-track::after {
-  content: '';
-  position: absolute; top: -100%;
-  width: 100%; height: 100%;
-  background: var(--gold);
-  animation: scrollDown 1.8s ease-in-out infinite;
-}
-@keyframes scrollDown {
-  0% { top: -100%; }
-  100% { top: 200%; }
-}
+    .nav-links a.active::after {
+      width: 100%;
+    }
 
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* ── ABOUT ── */
-#about {
-  background: var(--paper);
-  padding: 8rem 2rem;
-}
-.container { max-width: 1040px; margin: 0 auto; }
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(143, 174, 155, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(143, 174, 155, 0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
 
-.section-eyebrow {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-.section-eyebrow::before {
-  content: '';
-  display: block;
-  width: 30px; height: 1px;
-  background: var(--gold);
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  color: var(--ink);
-  line-height: 1.15;
-  margin-bottom: 3.5rem;
-}
-.section-title.light { color: var(--textOnInk); }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 5rem;
-  align-items: center;
-}
+    .hero-orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(203, 154, 53, 0.08) 0%, transparent 70%);
+      top: -200px;
+      right: -150px;
+    }
 
-.about-photo {
-  position: relative;
-}
-.photo-frame {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: var(--inkSoft);
-  position: relative;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
-.photo-initials {
-  font-family: 'Playfair Display', serif;
-  font-size: 6rem;
-  color: rgba(203,154,53,0.25);
-  user-select: none;
-  letter-spacing: -0.02em;
-}
-.photo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(21,38,31,0.4) 0%, transparent 50%);
-}
-.photo-border {
-  position: absolute;
-  top: 20px; left: 20px;
-  right: -20px; bottom: -20px;
-  border: 1px solid var(--gold);
-  opacity: 0.2;
-  pointer-events: none;
-}
-.photo-tag {
-  position: absolute;
-  bottom: 1.5rem; left: 1.5rem;
-  background: var(--gold);
-  color: var(--ink);
-  padding: 0.4rem 0.9rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+    .hero-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(143, 174, 155, 0.07) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+    }
 
-.about-bio p {
-  color: var(--textDark);
-  opacity: 0.75;
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
-  line-height: 1.8;
-}
-.about-highlights {
-  display: flex; gap: 2.5rem;
-  margin-top: 2.5rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--paperLine);
-}
-.highlight {
-  display: flex; flex-direction: column; gap: 2px;
-}
-.highlight-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  color: var(--ink);
-  line-height: 1;
-}
-.highlight-num sup {
-  font-size: 1rem;
-  color: var(--gold);
-  vertical-align: super;
-}
-.highlight-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--textDark);
-  opacity: 0.5;
-}
+    .hero-orb-3 {
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(203, 154, 53, 0.15);
+      bottom: 120px;
+      right: 15%;
+      animation: floatOrb 8s ease-in-out infinite;
+    }
 
-/* ── SKILLS ── */
-#skills {
-  background: var(--ink);
-  padding: 8rem 2rem;
-}
+    @keyframes floatOrb {
 
-.skills-intro {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-bottom: 3.5rem;
-  flex-wrap: wrap; gap: 1rem;
-}
-.skills-note {
-  font-size: 0.85rem;
-  color: var(--textOnInk);
-  opacity: 0.4;
-  max-width: 280px;
-  text-align: right;
-  line-height: 1.6;
-}
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 1px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.05);
-}
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
 
-.skill-card {
-  background: var(--ink);
-  padding: 1.6rem 1.4rem;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
-  transition: background 0.2s;
-}
-.skill-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--inkSoft);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-.skill-card:hover::before { transform: translateY(0); }
-.skill-card > * { position: relative; z-index: 1; }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+    }
 
-.skill-cat {
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--sage);
-  opacity: 0.7;
-  margin-bottom: 0.75rem;
-}
-.skill-name-row {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 1rem;
-}
-.skill-icon-wrap {
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-.skill-icon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.skill-name {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--textOnInk);
-}
-.skill-bar {
-  height: 2px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 1px;
-  overflow: hidden;
-}
-.skill-bar-fill {
-  height: 100%;
-  background: var(--gold);
-  border-radius: 1px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1s cubic-bezier(0.16,1,0.3,1);
-}
-.skill-bar-fill.animate { transform: scaleX(1); }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(203, 154, 53, 0.3);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: var(--textOnInk);
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
+
+    .hero-name .gold {
+      color: var(--gold);
+    }
+
+    .hero-name .italic {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-role {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--sage);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.9rem, 1.4vw, 1rem);
+      color: var(--textOnInk);
+      opacity: 0.5;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-style: italic;
+      line-height: 1.8;
+      animation: fadeDown 0.8s 0.3s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeDown 0.8s 0.4s ease both;
+    }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-gold:hover {
+      background: #daa93e;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--textOnInk);
+      border: 1px solid rgba(241, 235, 220, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 10%;
+      transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeDown 1s 0.6s ease both;
+    }
+
+    .hero-scroll span {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--textOnInk);
+      opacity: 0.35;
+    }
+
+    .scroll-track {
+      width: 1px;
+      height: 50px;
+      background: rgba(241, 235, 220, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-track::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gold);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% {
+        top: -100%;
+      }
+
+      100% {
+        top: 200%;
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--paper);
+      padding: 8rem 2rem;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title.light {
+      color: var(--textOnInk);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      position: relative;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--inkSoft);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: rgba(203, 154, 53, 0.25);
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(21, 38, 31, 0.4) 0%, transparent 50%);
+    }
+
+    .photo-border {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 1px solid var(--gold);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .photo-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .about-bio p {
+      color: var(--textDark);
+      opacity: 0.75;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-highlights {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--paperLine);
+    }
+
+    .highlight {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .highlight-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .highlight-num sup {
+      font-size: 1rem;
+      color: var(--gold);
+      vertical-align: super;
+    }
+
+    .highlight-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--textDark);
+      opacity: 0.5;
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      background: var(--ink);
+      padding: 8rem 2rem;
+    }
+
+    .skills-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skills-note {
+      font-size: 0.85rem;
+      color: var(--textOnInk);
+      opacity: 0.4;
+      max-width: 280px;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-card {
+      background: var(--ink);
+      padding: 1.6rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--inkSoft);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover::before {
+      transform: translateY(0);
+    }
+
+    .skill-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .skill-icon-wrap {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .skill-icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .skill-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--textOnInk);
+    }
+
+    .skill-bar {
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .skill-bar-fill.animate {
+      transform: scaleX(1);
+    }
 
 
-/* ── PROJECTS ── */
-#projects {
-  background: var(--paper);
-  padding: 8rem 2rem;
-}
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--paper);
+      padding: 8rem 2rem;
+    }
 
-.projects-intro {
-  margin-bottom: 3.5rem;
-}
+    .projects-intro {
+      margin-bottom: 3.5rem;
+    }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
 
-.proj-card {
-  display: block;
-  text-decoration: none;
-  position: relative;
-  border-radius: 2px;
-  overflow: hidden;
-  cursor: pointer;
-}
+    .proj-card {
+      display: block;
+      text-decoration: none;
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+    }
 
-.proj-img-wrap {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--inkSoft);
-}
+    .proj-img-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--inkSoft);
+    }
 
-.proj-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
+    .proj-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-.proj-card:hover .proj-img {
-  transform: scale(1.05);
-}
+    .proj-card:hover .proj-img {
+      transform: scale(1.05);
+    }
 
-.proj-num {
-  position: absolute;
-  top: 12px; left: 14px;
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(241,235,220,0.4);
-  z-index: 2;
-}
+    .proj-num {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(241, 235, 220, 0.4);
+      z-index: 2;
+    }
 
-.proj-link-hint {
-  position: absolute;
-  top: 10px; right: 10px;
-  width: 30px; height: 30px;
-  background: var(--gold);
-  border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.25s, transform 0.25s;
-  z-index: 3;
-}
+    .proj-link-hint {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: var(--gold);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 3;
+    }
 
-.proj-link-hint svg {
-  width: 13px; height: 13px;
-  stroke: var(--ink);
-}
+    .proj-link-hint svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--ink);
+    }
 
-.proj-card:hover .proj-link-hint {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .proj-card:hover .proj-link-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.proj-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(21,38,31,0.96);
-  padding: 1rem 1.1rem;
-  transform: translateY(100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2;
-}
+    .proj-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(21, 38, 31, 0.96);
+      padding: 1rem 1.1rem;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+    }
 
-.proj-card:hover .proj-overlay {
-  transform: translateY(0);
-}
+    .proj-card:hover .proj-overlay {
+      transform: translateY(0);
+    }
 
-.proj-overlay-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--textOnInk);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-}
+    .proj-overlay-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--textOnInk);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
 
-.proj-tags {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
 
-.proj-tag {
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border: 1px solid rgba(203,154,53,0.35);
-  color: var(--gold);
-  border-radius: 2px;
-}
+    .proj-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid rgba(203, 154, 53, 0.35);
+      color: var(--gold);
+      border-radius: 2px;
+    }
 
-@media (max-width: 600px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-/* ── CONTACT ── */
-#contact {
-  background: var(--inkSoft);
-  padding: 8rem 2rem;
-}
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--inkSoft);
+      padding: 8rem 2rem;
+    }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 5rem;
-  align-items: start;
-}
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
 
-.contact-copy p {
-  color: var(--textOnInk);
-  opacity: 0.6;
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
-}
-.contact-availability {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 2rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid rgba(203,154,53,0.2);
-  background: rgba(203,154,53,0.05);
-}
-.avail-dot {
-  width: 8px; height: 8px;
-  background: #4CAF50;
-  border-radius: 50%;
-  flex-shrink: 0;
-  animation: pulse 2s infinite;
-}
-.avail-text {
-  font-size: 0.82rem;
-  color: var(--textOnInk);
-  opacity: 0.7;
-}
+    .contact-copy p {
+      color: var(--textOnInk);
+      opacity: 0.6;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
 
-.contact-channels {
-  display: flex; flex-direction: column; gap: 0.6rem;
-  margin-top: 2rem;
-}
+    .contact-availability {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(203, 154, 53, 0.2);
+      background: rgba(203, 154, 53, 0.05);
+    }
 
-.channel-icon img {
-  width: 27px;
-  height: 27px;
-  object-fit: contain;
-  transition: opacity 0.2s;
-  filter: brightness(0) invert(1);
-}
+    .avail-dot {
+      width: 8px;
+      height: 8px;
+      background: #4CAF50;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
 
-.channel-link {
-  display: flex; align-items: center; gap: 12px;
-  color: var(--textOnInk);
-  text-decoration: none;
-  font-size: 0.88rem;
-  opacity: 0.55;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  transition: opacity 0.2s, color 0.2s;
-}
-.channel-link:hover { opacity: 1; color: var(--gold); }
-.channel-icon {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem;
-  flex-shrink: 0;
-}
+    .avail-text {
+      font-size: 0.82rem;
+      color: var(--textOnInk);
+      opacity: 0.7;
+    }
 
-.contact-form { display: flex; flex-direction: column; gap: 1rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-field { display: flex; flex-direction: column; gap: 6px; }
-.form-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--textOnInk);
-  opacity: 0.4;
-}
-.form-field input,
-.form-field textarea {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 0.85rem 1rem;
-  color: var(--textOnInk);
-  font-size: 0.9rem;
-  font-family: 'Inter', sans-serif;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  border-radius: 0;
-  width: 100%;
-}
-.form-field input::placeholder,
-.form-field textarea::placeholder { color: var(--textOnInk); opacity: 0.2; }
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color: var(--gold);
-  background: rgba(203,154,53,0.04);
-}
-.form-field textarea { resize: none; min-height: 130px; }
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--ink);
-  padding: 2rem 4rem;
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  color: var(--gold);
-  font-size: 1rem;
-  opacity: 0.6;
-}
-.footer-copy {
-  font-size: 0.78rem;
-  color: var(--textOnInk);
-  opacity: 1;
-  letter-spacing: 0.04em;
-}
-.footer-copy span { color: var(--clay); opacity: 1; }
-.footer-top {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--textOnInk);
-  text-decoration: none;
-  font-size: 1rem;
-  opacity: 0.4;
-  transition: opacity 0.2s, border-color 0.2s;
-}
-.footer-top:hover { opacity: 1; border-color: var(--gold); color: var(--gold); }
+    .channel-icon img {
+      width: 27px;
+      height: 27px;
+      object-fit: contain;
+      transition: opacity 0.2s;
+      filter: brightness(0) invert(1);
+    }
 
-/* ── REVEAL ANIMATIONS ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+    .channel-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--textOnInk);
+      text-decoration: none;
+      font-size: 0.88rem;
+      opacity: 0.55;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: opacity 0.2s, color 0.2s;
+    }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  nav { padding: 1rem 2rem; }
-  nav.scrolled { padding: 0.75rem 2rem; }
-  footer { padding: 1.5rem 2rem; flex-wrap: wrap; gap: 1rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .about-photo { max-width: 320px; }
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .form-row { grid-template-columns: 1fr; }
-  #about, #skills, #projects, #contact { padding: 5rem 1.5rem; }
-  .skills-intro { flex-direction: column; align-items: flex-start; }
-  .skills-note { text-align: left; }
-}
-@media (max-width: 600px) {
-  .nav-links { gap: 1.2rem; }
-  .hero-cta { flex-direction: column; align-items: center; }
-  .about-highlights { flex-wrap: wrap; gap: 1.5rem; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
-@media (max-width: 475px) {
-  .nav-links {
-    gap: 0.8rem;
-  }
+    .channel-link:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
 
-  .nav-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-  }
-}
-</style>
+    .channel-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--textOnInk);
+      opacity: 0.4;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.85rem 1rem;
+      color: var(--textOnInk);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--textOnInk);
+      opacity: 0.2;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--gold);
+      background: rgba(203, 154, 53, 0.04);
+    }
+
+    .form-field textarea {
+      resize: none;
+      min-height: 130px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--textOnInk);
+      opacity: 1;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-copy span {
+      color: var(--clay);
+      opacity: 1;
+    }
+
+    .footer-top {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--textOnInk);
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0.4;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .footer-top:hover {
+      opacity: 1;
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 2rem;
+      }
+
+      nav.scrolled {
+        padding: 0.75rem 2rem;
+      }
+
+      footer {
+        padding: 1.5rem 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-photo {
+        max-width: 320px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      #about,
+      #skills,
+      #projects,
+      #contact {
+        padding: 5rem 1.5rem;
+      }
+
+      .skills-intro {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .skills-note {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 1.2rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-highlights {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 475px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+
+      .nav-links a {
+        font-size: 0.65rem;
+        letter-spacing: 0.06em;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Custom cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="nav-logo">AVI.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">AVI.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg-lines"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-lines"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
 
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Full-Stack Developer
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Full-Stack Developer
+      </div>
+      <h1 class="hero-name">
+        Awo <span class="italic">Iwinosa</span><br />
+        <span class="gold">Vanessa</span>
+      </h1>
+      <p class="hero-role">Building the full picture, from pixels to servers</p>
+      <p class="hero-tagline">"I don't just write code, I architect experiences that live at the intersection of logic
+        and beauty."</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-gold">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Let's talk</a>
+      </div>
     </div>
-    <h1 class="hero-name">
-      Awo <span class="italic">Iwinosa</span><br/>
-      <span class="gold">Vanessa</span>
-    </h1>
-    <p class="hero-role">Building the full picture, from pixels to servers</p>
-    <p class="hero-tagline">"I don't just write code, I architect experiences that live at the intersection of logic and beauty."</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-gold">View my work</a>
-      <a href="#contact" class="btn btn-ghost">Let's talk</a>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-track"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo reveal">
+          <div class="photo-frame">
+            <span class="photo-initials">AVI</span>
+            <div class="photo-overlay"></div>
+          </div>
+          <div class="photo-border"></div>
+          <div class="photo-tag">Available for hire</div>
+        </div>
+
+        <div class="about-bio reveal reveal-delay-1">
+          <p class="section-eyebrow">About me</p>
+          <h2 class="section-title">Crafting the digital,<br />one layer at a time.</h2>
+          <p>I'm Vanessa, a Full-Stack Developer with a deep love for building things that are as thoughtful under the
+            hood as they are beautiful on the surface.</p>
+          <p>From responsive frontends powered by React and Next.js to robust backend systems and cloud infrastructure
+            on AWS, I thrive across the entire stack. I believe great software isn't just functional, it's intentional.
+          </p>
+          <p>When I'm not shipping code, I'm sketching interfaces in Figma, exploring new tools, or dreaming up the next
+            thing I want to build.</p>
+          <div class="about-highlights">
+            <div class="highlight">
+              <div class="highlight-num">17<sup>+</sup></div>
+              <div class="highlight-label">Technologies</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-num">Full</div>
+              <div class="highlight-label">Stack</div>
+            </div>
+            <div class="highlight">
+              <div class="highlight-num">1</div>
+              <div class="highlight-label">Mission</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="skills-intro reveal">
+        <div>
+          <p class="section-eyebrow" style="color:var(--gold)">What I work with</p>
+          <h2 class="section-title light">My toolkit.</h2>
+        </div>
+        <p class="skills-note">A curated set of technologies I use to build real, production-grade software.</p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skill-card reveal">
+          <div class="skill-cat">Foundation</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/htmlandcss.png" alt="HTML & CSS" class="skill-icon-img" />
+            </div>
+            <div class="skill-name">HTML & CSS</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:97%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-cat">Core</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/javaScript.png" alt="JavaScript" class="skill-icon-img" />
+            </div>
+            <div class="skill-name">JavaScript</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:93%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-cat">Core</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/typeScript.png" alt="TypeScript" class="skill-icon-img" />
+            </div>
+            <div class="skill-name">TypeScript</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:88%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-cat">Frontend</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/react.png" alt="React" class="skill-icon-img" /></div>
+            <div class="skill-name">React</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:91%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-cat">Frontend</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/nextjs.png" alt="Next.js" class="skill-icon-img" /></div>
+            <div class="skill-name">Next.js</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:86%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-cat">Frontend</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/vuejs.png" alt="Vue.js" class="skill-icon-img" /></div>
+            <div class="skill-name">Vue.js</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:80%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-cat">Styling</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/tailwindcss.png" alt="TailwindCSS" class="skill-icon-img" />
+            </div>
+            <div class="skill-name">TailwindCSS</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:89%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-cat">Design</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/figma.png" alt="Figma" class="skill-icon-img" /></div>
+            <div class="skill-name">Figma</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:83%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-cat">Backend</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/nodejs.png" alt="Node.js" class="skill-icon-img" /></div>
+            <div class="skill-name">Node.js</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:88%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-cat">Backend</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/python.png" alt="Python" class="skill-icon-img" /></div>
+            <div class="skill-name">Python</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:82%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-cat">Integration</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/rest-api.png" alt="REST APIs" class="skill-icon-img" /></div>
+            <div class="skill-name">REST APIs</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:92%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-cat">Data</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/sql.png" alt="SQL & Databases" class="skill-icon-img" /></div>
+            <div class="skill-name">SQL & Databases</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-cat">Data</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/mongodb.png" alt="MongoDB" class="skill-icon-img" /></div>
+            <div class="skill-name">MongoDB</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:80%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-cat">Workflow</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/git.png" alt="Git & GitHub" class="skill-icon-img" /></div>
+            <div class="skill-name">Git & GitHub</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:94%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-cat">Infrastructure</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/aws.png" alt="AWS / Cloud" class="skill-icon-img" /></div>
+            <div class="skill-name">AWS / Cloud</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:77%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-cat">Infrastructure</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/docker.png" alt="Docker" class="skill-icon-img" /></div>
+            <div class="skill-name">Docker</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:79%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-cat">Mobile</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/react-native.png" alt="React Native" class="skill-icon-img" />
+            </div>
+            <div class="skill-name">React Native</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:78%"></div>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-cat">Workflow</div>
+          <div class="skill-name-row">
+            <div class="skill-icon-wrap"><img src="images/jest.png" alt="Jest" class="skill-icon-img" /></div>
+            <div class="skill-name">Jest</div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width:75%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-intro reveal">
+        <p class="section-eyebrow">My work</p>
+        <h2 class="section-title">Projects.</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <a href="https://avidevweatherapp.netlify.app/" target="_blank" class="proj-card reveal">
+          <div class="proj-img-wrap">
+            <img src="images/weatherApp.png" alt="Weather App" class="proj-img" />
+            <div class="proj-num">01</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Weather App</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+                <span class="proj-tag">Weather API</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevportfolio.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-1">
+          <div class="proj-img-wrap">
+            <img src="images/portfolio.png" alt="Portfolio" class="proj-img" />
+            <div class="proj-num">02</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Portfolio</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevquizappwithtimer.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-2">
+          <div class="proj-img-wrap">
+            <img src="images/quiz.png" alt="Quiz App" class="proj-img" />
+            <div class="proj-num">03</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Quiz App</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevrockpaperscissorsgame.netlify.app/" target="_blank"
+          class="proj-card reveal reveal-delay-3">
+          <div class="proj-img-wrap">
+            <img src="images/rpsGame.png" alt="Rock Paper Scissors" class="proj-img" />
+            <div class="proj-num">04</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Rock Paper Scissors</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevcalculator.netlify.app/" target="_blank" class="proj-card reveal">
+          <div class="proj-img-wrap">
+            <img src="images/calculator.png" alt="Calculator" class="proj-img" />
+            <div class="proj-num">05</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Calculator</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevtodo.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-1">
+          <div class="proj-img-wrap">
+            <img src="images/todoApp.png" alt="Todo App" class="proj-img" />
+            <div class="proj-num">06</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Todo App</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://avidevpalindromechecker.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-2">
+          <div class="proj-img-wrap">
+            <img src="images/palindromeChecker.png" alt="Palindrome Checker" class="proj-img" />
+            <div class="proj-num">07</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Palindrome Checker</div>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+                <span class="proj-tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://fwayshipping.com/" target="_blank" class="proj-card reveal reveal-delay-3">
+          <div class="proj-img-wrap">
+            <img src="images/shippingSite.png" alt="Fway Shipping" class="proj-img" />
+            <div class="proj-num">08</div>
+            <div class="proj-link-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </div>
+            <div class="proj-overlay">
+              <div class="proj-overlay-title">Fway Shipping</div>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">Firebase</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">CSS</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-copy reveal">
+          <p class="section-eyebrow" style="color:var(--gold)">Get in touch</p>
+          <h2 class="section-title light">Let's build<br />something<br />together.</h2>
+          <p>Have a project in mind, an idea that needs a developer, or just want to say hello? My inbox is always open.
+          </p>
+
+          <div class="contact-availability">
+            <div class="avail-dot"></div>
+            <span class="avail-text">Available for freelance projects & full-time roles</span>
+          </div>
+
+          <div class="contact-channels">
+            <a href="mailto:aviwebstudios@gmail.com" class="channel-link">
+              <div class="channel-icon"><img src="images/email.png" alt="Email" /></div>
+              aviwebstudios@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/vanessa-awo" target="_blank" class="channel-link">
+              <div class="channel-icon"><img src="images/linkedin.png" alt="LinkedIn" /></div>
+              LinkedIn
+            </a>
+            <a href="https://github.com/awoiwinosavanessa/awoiwinosavanessa.github.io" target="_blank"
+              class="channel-link">
+              <div class="channel-icon"><img src="images/github.png" alt="GitHub" /></div>
+              GitHub
+            </a>
+            <a href="https://wa.me/yourphonenumber" target="_blank" class="channel-link">
+              <div class="channel-icon"><img src="images/whatsapp.png" alt="WhatsApp" /></div>
+              WhatsApp
+            </a>
+            <a href="https://t.me/yourusername" target="_blank" class="channel-link">
+              <div class="channel-icon"><img src="images/telegram.png" alt="Telegram" /></div>
+              Telegram
+            </a>
+            <a href="https://x.com/yourusername" target="_blank" class="channel-link">
+              <div class="channel-icon"><img src="images/x.png" alt="X" /></div>
+              X
+            </a>
+            <a href="https://instagram.com/yourusername" target="_blank" class="channel-link">
+              <div class="channel-icon"><img src="images/instagram.png" alt="Instagram" /></div>
+              Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal reveal-delay-1">
+  <div class="form-row">
+    <div class="form-field">
+      <label class="form-label">Name</label>
+      <input type="text" id="contact-name" placeholder="Your name" />
+    </div>
+    <div class="form-field">
+      <label class="form-label">Email</label>
+      <input type="email" id="contact-email" placeholder="your@email.com" />
     </div>
   </div>
-
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-track"></div>
+  <div class="form-field">
+    <label class="form-label">Subject</label>
+    <input type="text" id="contact-subject" placeholder="What's this about?" />
   </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-photo reveal">
-        <div class="photo-frame">
-          <span class="photo-initials">AVI</span>
-          <div class="photo-overlay"></div>
-        </div>
-        <div class="photo-border"></div>
-        <div class="photo-tag">Available for hire</div>
-      </div>
-
-      <div class="about-bio reveal reveal-delay-1">
-        <p class="section-eyebrow">About me</p>
-        <h2 class="section-title">Crafting the digital,<br/>one layer at a time.</h2>
-        <p>I'm Vanessa, a Full-Stack Developer with a deep love for building things that are as thoughtful under the hood as they are beautiful on the surface.</p>
-        <p>From responsive frontends powered by React and Next.js to robust backend systems and cloud infrastructure on AWS, I thrive across the entire stack. I believe great software isn't just functional, it's intentional.</p>
-        <p>When I'm not shipping code, I'm sketching interfaces in Figma, exploring new tools, or dreaming up the next thing I want to build.</p>
-        <div class="about-highlights">
-          <div class="highlight">
-            <div class="highlight-num">17<sup>+</sup></div>
-            <div class="highlight-label">Technologies</div>
-          </div>
-          <div class="highlight">
-            <div class="highlight-num">Full</div>
-            <div class="highlight-label">Stack</div>
-          </div>
-          <div class="highlight">
-            <div class="highlight-num">1</div>
-            <div class="highlight-label">Mission</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="form-field">
+    <label class="form-label">Message</label>
+    <textarea id="contact-message" placeholder="Tell me about your project..."></textarea>
   </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <div class="skills-intro reveal">
-      <div>
-        <p class="section-eyebrow" style="color:var(--gold)">What I work with</p>
-        <h2 class="section-title light">My toolkit.</h2>
-      </div>
-      <p class="skills-note">A curated set of technologies I use to build real, production-grade software.</p>
-    </div>
-
-    <div class="skills-grid">
-      <!-- Frontend -->
-      <div class="skill-card reveal">
-        <div class="skill-cat">Foundation</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/htmlandcss.png" alt="HTML & CSS" class="skill-icon-img" /></div>
-          <div class="skill-name">HTML & CSS</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:97%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-cat">Core</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/javaScript.png" alt="JavaScript" class="skill-icon-img" /></div>
-          <div class="skill-name">JavaScript</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:93%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-cat">Core</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/typeScript.png" alt="TypeScript" class="skill-icon-img" /></div>
-          <div class="skill-name">TypeScript</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-cat">Frontend</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/react.png" alt="React" class="skill-icon-img" /></div>
-          <div class="skill-name">React</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:91%"></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-cat">Frontend</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/nextjs.png" alt="Next.js" class="skill-icon-img" /></div>
-          <div class="skill-name">Next.js</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:86%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-cat">Frontend</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/vuejs.png" alt="Vue.js" class="skill-icon-img" /></div>
-          <div class="skill-name">Vue.js</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-cat">Styling</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/tailwindcss.png" alt="TailwindCSS" class="skill-icon-img" /></div>
-          <div class="skill-name">TailwindCSS</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:89%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-cat">Design</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/figma.png" alt="Figma" class="skill-icon-img" /></div>
-          <div class="skill-name">Figma</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:83%"></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-cat">Backend</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/nodejs.png" alt="Node.js" class="skill-icon-img" /></div>
-          <div class="skill-name">Node.js</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-cat">Backend</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/python.png" alt="Python" class="skill-icon-img" /></div>
-          <div class="skill-name">Python</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-cat">Integration</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/rest-api.png" alt="REST APIs" class="skill-icon-img" /></div>
-          <div class="skill-name">REST APIs</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-cat">Data</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/sql.png" alt="SQL & Databases" class="skill-icon-img" /></div>
-          <div class="skill-name">SQL & Databases</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-cat">Data</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/mongodb.png" alt="MongoDB" class="skill-icon-img" /></div>
-          <div class="skill-name">MongoDB</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-cat">Workflow</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/git.png" alt="Git & GitHub" class="skill-icon-img" /></div>
-          <div class="skill-name">Git & GitHub</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:94%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-cat">Infrastructure</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/aws.png" alt="AWS / Cloud" class="skill-icon-img" /></div>
-          <div class="skill-name">AWS / Cloud</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:77%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-cat">Infrastructure</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/docker.png" alt="Docker" class="skill-icon-img" /></div>
-          <div class="skill-name">Docker</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:79%"></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-cat">Mobile</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/react-native.png" alt="React Native" class="skill-icon-img" /></div>
-          <div class="skill-name">React Native</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-cat">Workflow</div>
-        <div class="skill-name-row">
-          <div class="skill-icon-wrap"><img src="images/jest.png" alt="Jest" class="skill-icon-img" /></div>
-          <div class="skill-name">Jest</div>
-        </div>
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="projects-intro reveal">
-      <p class="section-eyebrow">My work</p>
-      <h2 class="section-title">Projects.</h2>
-    </div>
-
-    <div class="projects-grid">
-
-      <a href="https://avidevweatherapp.netlify.app/" target="_blank" class="proj-card reveal">
-        <div class="proj-img-wrap">
-          <img src="images/weatherApp.png" alt="Weather App" class="proj-img" />
-          <div class="proj-num">01</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Weather App</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-              <span class="proj-tag">Weather API</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevportfolio.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-1">
-        <div class="proj-img-wrap">
-          <img src="images/portfolio.png" alt="Portfolio" class="proj-img" />
-          <div class="proj-num">02</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Portfolio</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevquizappwithtimer.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-2">
-        <div class="proj-img-wrap">
-          <img src="images/quiz.png" alt="Quiz App" class="proj-img" />
-          <div class="proj-num">03</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Quiz App</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevrockpaperscissorsgame.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-3">
-        <div class="proj-img-wrap">
-          <img src="images/rpsGame.png" alt="Rock Paper Scissors" class="proj-img" />
-          <div class="proj-num">04</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Rock Paper Scissors</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevcalculator.netlify.app/" target="_blank" class="proj-card reveal">
-        <div class="proj-img-wrap">
-          <img src="images/calculator.png" alt="Calculator" class="proj-img" />
-          <div class="proj-num">05</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Calculator</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevtodo.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-1">
-        <div class="proj-img-wrap">
-          <img src="images/todoApp.png" alt="Todo App" class="proj-img" />
-          <div class="proj-num">06</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Todo App</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://avidevpalindromechecker.netlify.app/" target="_blank" class="proj-card reveal reveal-delay-2">
-        <div class="proj-img-wrap">
-          <img src="images/palindromeChecker.png" alt="Palindrome Checker" class="proj-img" />
-          <div class="proj-num">07</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Palindrome Checker</div>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML</span>
-              <span class="proj-tag">CSS</span>
-              <span class="proj-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://fwayshipping.com/" target="_blank" class="proj-card reveal reveal-delay-3">
-        <div class="proj-img-wrap">
-          <img src="images/shippingSite.png" alt="Fway Shipping" class="proj-img" />
-          <div class="proj-num">08</div>
-          <div class="proj-link-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <div class="proj-overlay">
-            <div class="proj-overlay-title">Fway Shipping</div>
-            <div class="proj-tags">
-              <span class="proj-tag">React</span>
-              <span class="proj-tag">Firebase</span>
-              <span class="proj-tag">Vite</span>
-              <span class="proj-tag">CSS</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-copy reveal">
-        <p class="section-eyebrow" style="color:var(--gold)">Get in touch</p>
-        <h2 class="section-title light">Let's build<br/>something<br/>together.</h2>
-        <p>Have a project in mind, an idea that needs a developer, or just want to say hello? My inbox is always open.</p>
-
-        <div class="contact-availability">
-          <div class="avail-dot"></div>
-          <span class="avail-text">Available for freelance projects & full-time roles</span>
-        </div>
-
-        <div class="contact-channels">
-          <a href="mailto:aviwebstudios@gmail.com" class="channel-link">
-            <div class="channel-icon"><img src="images/email.png" alt="Email" /></div>
-            aviwebstudios@gmail.com
-          </a>
-          <a href="https://linkedin.com/in/vanessa-awo" target="_blank" class="channel-link">
-            <div class="channel-icon"><img src="images/linkedin.png" alt="LinkedIn" /></div>
-            LinkedIn
-          </a>
-          <a href="https://github.com/awoiwinosavanessa/awoiwinosavanessa.github.io" target="_blank" class="channel-link">
-            <div class="channel-icon"><img src="images/github.png" alt="GitHub" /></div>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <div class="contact-form reveal reveal-delay-1">
-        <div class="form-row">
-          <div class="form-field">
-            <label class="form-label">Name</label>
-            <input type="text" placeholder="Your name" />
-          </div>
-          <div class="form-field">
-            <label class="form-label">Email</label>
-            <input type="email" placeholder="your@email.com" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Subject</label>
-          <input type="text" placeholder="What's this about?" />
-        </div>
-        <div class="form-field">
-          <label class="form-label">Message</label>
-          <textarea placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button class="btn btn-gold" style="align-self:flex-start">Send message →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">AVI.</span>
-  <p class="footer-copy">Designed & built by <span>Awo Iwinosa Vanessa</span> · © 2025</p>
-  <a href="#hero" class="footer-top" title="Back to top">↑</a>
-</footer>
+  <button class="btn btn-gold" id="sendBtn" style="align-self:flex-start">Send message →</button>
+</div>
 
 <script>
-/* ── Custom cursor ── */
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
+document.getElementById('sendBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px';
-  cursor.style.top = my + 'px';
-});
+  const name = document.getElementById('contact-name').value;
+  const email = document.getElementById('contact-email').value;
+  const subject = document.getElementById('contact-subject').value;
+  const message = document.getElementById('contact-message').value;
 
-(function animRing() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top = ry + 'px';
-  requestAnimationFrame(animRing);
-})();
+  if (!name || !email || !message) {
+    alert('Please fill in your name, email, and message.');
+    return;
+  }
 
-document.querySelectorAll('a, button, .skill-card').forEach(el => {
-  el.addEventListener('mouseenter', () => ring.classList.add('expand'));
-  el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
-});
+  const sendBtn = document.getElementById('sendBtn');
+  sendBtn.textContent = 'Sending...';
+  sendBtn.disabled = true;
 
-/* ── Nav scroll ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message }),
+    });
 
-/* ── Active nav link ── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
-      });
+    if (res.ok) {
+      alert('Message sent! I will get back to you soon.');
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-subject').value = '';
+      document.getElementById('contact-message').value = '';
+    } else {
+      alert('Something went wrong. Please try again.');
     }
-  });
-}, { threshold: 0.4 });
-sections.forEach(s => observer.observe(s));
-
-/* ── Scroll reveal ── */
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-reveals.forEach(el => revealObs.observe(el));
-
-/* ── Skill bar animate on scroll ── */
-const skillBars = document.querySelectorAll('.skill-bar-fill');
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-      barObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-skillBars.forEach(b => barObs.observe(b));
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+  } finally {
+    sendBtn.textContent = 'Send message →';
+    sendBtn.disabled = false;
+  }
+});
 </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">AVI.</span>
+    <p class="footer-copy">Designed & built by <span>Awo Iwinosa Vanessa</span> · © 2025</p>
+    <a href="#hero" class="footer-top" title="Back to top">↑</a>
+  </footer>
+
+  <script>
+    /* ── Custom cursor ── */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    (function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    document.querySelectorAll('a, button, .skill-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+    });
+
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ── Active nav link ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObs.observe(el));
+
+    /* ── Skill bar animate on scroll ── */
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          barObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    skillBars.forEach(b => barObs.observe(b));
+  </script>
 </body>
+
 </html>
